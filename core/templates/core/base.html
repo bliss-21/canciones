@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CancioneApp</title>
+
+    {% load static %}
+
+    
+    <!-- boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="{% static 'css/principal.css' %}">
+    <STYLE>
+        ::-webkit-scrollbar {/*codigo que oculta las barras de scroll pero permite la funcionabilidad*/
+            display: none;
+        }
+
+        body a{text-decoration: none; color: black;}
+
+        .navbar li  {
+            display: inline-block;
+            margin-left: 10px;
+            
+            /*background-color: #d61010;*/
+            width: auto;
+            height: 10px;
+
+            padding-top:15px;
+        }
+    </STYLE>
+</head>
+<body>
+    <nav class = "navbar navbar-expand-lg navbar-dark bg-dark">
+        <ul>
+                <li style="list-style:none; "><a  class = "btn btn-warning" href="{% url 'home' %}">Home</a></li>
+
+            {% for t in tipos %}
+            <li style="list-style:none; "><a  class = "btn btn-warning" href="{% url 'listado' t.id %}">{{ t.nombre}}</a></li>
+            {% endfor %}
+            <li style="list-style:none;"><a class="btn btn-warning" href="{% url 'listado' %}">Todas</a></li>
+            <li style="list-style:none;"><a class="btn btn-warning" href="{% url 'biblia' %}">biblia</a></li>
+        </ul>
+
+    </nav>
+    {% block contenido %}
+    
+        {% endblock contenido %}
+</body>
+</html>

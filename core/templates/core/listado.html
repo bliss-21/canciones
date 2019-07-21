@@ -1,0 +1,53 @@
+{% extends "core/base.html" %}
+
+    {% load static %}
+
+{% block contenido %}
+
+
+<br>
+<br>
+<br>
+    <center>
+
+<table class="table table table-striped col-md-8">
+    <thead>
+        <tr>
+            <th style="font-size: 2em;">Nombre</th>
+        </tr>
+    </thead>
+    <tbody>   
+        {% for c in canciones %}
+        <tr>
+            <td  style="list-style:none;" >
+                <a style="font-size: 1.8em;" href="{% url 'cancion' c.id %}"><tab>{{ c.nombre}}</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>
+                <H2>Aun no hay Canciones agregadas para esta categoria ;(</H2>
+                
+            </td>
+            
+        </tr>
+
+        <tr>
+            <td>
+                <center>
+                    <img src="https://pa1.narvii.com/6909/a30c63708c9534a983c8d70b676ec8dc3eab4e97r1-643-687_hq.gif" alt="">
+                </center>
+            </td>
+        </tr>
+            
+
+        {% endfor %}
+    </tbody>
+</table>
+</center>
+
+ 
+  
+
+
+{% endblock contenido %}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bliblia</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    
+    <STYLE>
+            ::-webkit-scrollbar {/*codigo que oculta las barras de scroll pero permite la funcionabilidad*/
+                display: none;
+            }
+    
+            body a{text-decoration: none; color: black;}
+    
+            .navbar li  {
+            display: inline-block;
+            margin-left: 10px;
+            
+            /*background-color: #d61010;*/
+            width: auto;
+            height: 10px;
+
+            padding-top:15px;
+        }
+    </STYLE>
+    
+</head>
+<body>
+    
+    <nav class = "navbar navbar-expand-lg navbar-dark bg-dark" >
+        
+        <form action="" method="POST" id="clienteFormulario">
+            {% csrf_token %}
+
+            <ul>
+                    <li style="list-style:none; "><a  class = "btn btn-warning" href="{% url 'home' %}">Home</a></li>
+                <li>
+                        <select style="width: 10em" class="custom-select" name="cboLibro" id="cboLibro">
+                                {% for l in libros %}
+                                    {% ifequal l.name libro %}
+                                        <option value="{{ l.id}}" selected>{{ l.name}} </option>                              
+                                    {% else %}
+                                        <option value="{{ l.id}}">{{ l.name}}</option>
+                                    {% endifequal %}
+                                {% endfor %}
+                        </select>
+                </li>
+
+                <li>
+                        <div  style="width: 8em"class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default">Cap</span>
+                                </div>
+                                <input value="{{capitulo}}"  id='cap' name='cap' type="number" required class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+                </li>
+
+
+                <li>
+                        <div  style="width: 7em"class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default"> : </span>
+                                </div>
+                                <input value="{{desde}}" id='des' name='des' type="number" required class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+                </li>
+
+                <li>
+                        <div  style="width: 7em"class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroup-sizing-default"> - </span>
+                                </div>
+                                <input value="{{hasta}}" id='hasta' name='hasta' type="number" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+                </li>
+
+                <li>
+                    <input  type="submit" name="btnBuscar" id="btnBuscar" value="Buscar" class="btn btn-success">
+                </li>
+            </ul>
+            
+        </form>
+    </nav>
+    <center>
+        <div >
+            <p style="font-size: 3.75em; color:yellow;">{{direccion_versiculo}}</p>
+            {% for v in versiculos %}
+            
+            <span style="font-size: 2em; color:blue">{{ v.verse}} </span> <span style="font-size: 3.5em; color:red;">{{ v.text}}</span>
+            {% endfor %}
+
+            <span style="font-size: 3.5em; color:red;">{{no_encontrado}}</span>
+
+        </div>
+    </center>
+</body>
+</html>

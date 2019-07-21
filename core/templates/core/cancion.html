@@ -1,0 +1,16 @@
+{% extends "core/base.html" %}
+
+    {% load static %}
+
+{% block contenido %}
+
+
+{% for c in cancion %}
+<center><h2>{{ c.nombre}}</h2>   
+
+
+<p class="col-md-11" style="font-size:4.5em; color: red;">{{ c.letra|linebreaksbr }}</p></center>    
+</center> 
+{% endfor %}
+
+{% endblock contenido %}

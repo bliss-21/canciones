@@ -1,0 +1,14 @@
+body{
+    background-color: brown;
+}
+
+h1 {
+    color: #FCA205;
+}
+
+li {
+    display:inline;
+    padding-left:3px;
+    padding-right:3px;
+
+}
